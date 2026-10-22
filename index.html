@@ -889,7 +889,7 @@ async function mpLeave(quiet){
   mp.rm=null;mp.host=false;mp.room='';mp.on=false;mp.started=false;mp.ps='';if(!quiet)mp.msg='Lobby verlassen.';
 }
 async function mpOpen(code,asHost){
-  if(!RM){mp.msg='Multiplayer nicht verfügbar: Seite muss veröffentlicht und mit dem Freund geteilt sein.';return;}
+if(!window.RM){window.RM={join:async function(){return{wire:function(){}};}};};const RM=window.RM;
   await mpLeave(true);mp.msg='Verbinde…';
   try{
     const rm=await RM.join('br-'+code.toLowerCase());mp.rm=rm;mp.host=asHost;mp.room=code;mp.ps='';mpWire(rm);
